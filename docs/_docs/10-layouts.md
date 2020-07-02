@@ -7,7 +7,7 @@ single_layout_gallery:
     alt: "single layout with header example"
   - image_path: /assets/images/mm-layout-single-meta.png
     alt: "single layout with comments and related posts"
-last_modified_at: 2019-01-08T08:31:40-05:00
+last_modified_at: 2020-03-06T15:47:42-05:00
 toc: true
 toc_label: "Included Layouts"
 toc_icon: "columns"
@@ -427,6 +427,7 @@ To overlay text on top of a header image you have a few more options:
 | **overlay_filter**       | Color/opacity to overlay on top of the header image eg: `0.5` or `rgba(255, 0, 0, 0.5)`. |
 | **show_overlay_excerpt** | Display excerpt in the overlay text | true |
 | **excerpt**              | Auto-generated page excerpt is added to the overlay text or can be overridden. | |
+| **tagline**              | Overrides page excerpt. Useful when header text needs to be different from excerpt in archive views. | |
 | **actions**              | Call to action button links (`actions` array: `label` and `url`). More than one button link can be assigned. | |
 | **cta_label**            | Deprecated, use `actions` instead. Call to action button text label. | `more_label` in UI Text data file |
 | **cta_url**              | Deprecated, use `actions` instead. Call to action button URL. | |
@@ -547,7 +548,7 @@ To assign more author links, add to the `author.links` array  in [`_config.yml`]
 author:
   name: "Your Name"
   avatar: "/assets/images/bio-photo.jpg"
-  bio: "I am an amazing person."
+  bio: "I am an **amazing** person." # Note: Markdown is allowed
   location: "Somewhere"
   links:
     - label: "Made Mistakes"
@@ -564,7 +565,7 @@ author:
       url: "https://instagram.com/mmistakes"
 ```
 
-**Note:** Depending on the icon and theme skin used, colors may not be used. Popular social networks like Twitter, Facebook, Instagram, Google+, etc. have the appropriate brand color set in CSS. To change or add missing colors edit [`_utilities.scss`](https://github.com/mmistakes/minimal-mistakes/blob/master/_sass/minimal-mistakes/_utilities.scss) in `<site root>/_sass/minimal-mistakes/`.
+**Note:** Depending on the icon and theme skin used, colors may not be used. Popular social networks like Twitter, Facebook, Instagram, etc. have the appropriate brand color set in CSS. To change or add missing colors edit [`_utilities.scss`](https://github.com/mmistakes/minimal-mistakes/blob/master/_sass/minimal-mistakes/_utilities.scss) in `<site root>/_sass/minimal-mistakes/`.
 {: .notice--info}
 
 For example, to color a Reddit icon, simply add a `color` declaration and the corresponding hex code like so:
@@ -701,7 +702,7 @@ defaults:
 
 ## Social sharing links
 
-The `single` layout has an option to enable social links at the bottom of posts for sharing on Twitter, Facebook, Google+, and LinkedIn. Similar to the links found in the author sidebar, the theme ships with defaults for the most common social networks.
+The `single` layout has an option to enable social links at the bottom of posts for sharing on Twitter, Facebook, and LinkedIn. Similar to the links found in the author sidebar, the theme ships with defaults for the most common social networks.
 
 ![default social share link buttons]({{ "/assets/images/mm-social-share-links-default.png" | relative_url }})
 
@@ -709,7 +710,7 @@ To enable these links add `share: true` to a post or page's YAML Front Matter or
 
 If you'd like to add, remove, or change the order of these default links you can do so by editing [`_includes/social-share.html`](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/social-share.html).
 
-Let's say you wanted to replace the Google+ button with a Reddit one. Simply replace the HTML with the following:
+Let's say you wanted to replace the LinkedIn button with a Reddit one. Simply replace the HTML with the following:
 
 ```html
 {% raw %}<a href="https://www.reddit.com/submit?url={{ page.url | absolute_url | url_encode }}&title={{ page.title }}" class="btn" title="{{ site.data.ui-text[site.locale].share_on_label }} Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>{% endraw %}
@@ -732,9 +733,8 @@ Under the `$social` color map in `assets/_scss/_buttons.scss` simply add a name 
 $social:
 (facebook, $facebook-color),
 (twitter, $twitter-color),
-(google-plus, $google-plus-color),
-(linkedin, $linkedin-color);
-(reddit, #ff4500;)
+(linkedin, $linkedin-color),
+(reddit, #ff4500);
 ```
 
 **ProTip:** For bonus points you can add it as a Sass `$variable` that you set in `_variables.scss` like the other ["brand" colors](http://brandcolors.net/).
